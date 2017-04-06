@@ -1,5 +1,10 @@
 
 % The House of Fëanor
+% Example query. Comma denotes the logical AND
+% Goal: Find elves that have Feanor as parent and have children:
+% father(feanor,X),parent(X,Y)
+
+% Database
 
 elf(mahtan).
 elf(finwe).
@@ -15,20 +20,20 @@ elf(celebrimbor).
 elf(miriel).
 elf(nerdanel).
 
-man(mahtan).
-man(finwe).
-man(feanor).
-man(maedhros).
-man(maglor).
-man(celegorm).
-man(caranthir).
-man(curufin).
-man(amrod).
-man(amras).
-man(celebrimbor).
+male(mahtan).
+male(finwe).
+male(feanor).
+male(maedhros).
+male(maglor).
+male(celegorm).
+male(caranthir).
+male(curufin).
+male(amrod).
+male(amras).
+male(celebrimbor).
 
-woman(miriel).
-woman(nerdanel).
+female(miriel).
+female(nerdanel).
 
 parent(mahtan, miriel).
 
@@ -52,8 +57,9 @@ parent(nerdanel, amras).
 
 parent(curufin, celebrimbor).
 
-father(X,Y) :- parent(X,Y), man(X).
-mother(X,Y) :- parent(X,Y), woman(X).
+
+father(X,Y) :- parent(X,Y), male(X).
+mother(X,Y) :- parent(X,Y), female(X).
 
 ancestor(A, B) :- parent(A, B).
 ancestor(A, B) :- parent(A, X), ancestor(X, B).
